@@ -25,7 +25,7 @@ class Bank:
         for client in self._clients:
             if client.client_id == client_id:
                 return client
-            raise ValueError(f"Client with ID {client.client_id} doesn't exists.")
+        raise ValueError(f"Client with ID {client_id} doesn't exists.")
 
     def show_balance_info_of_all_clients(self):
         for client in self._clients:
