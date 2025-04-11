@@ -44,9 +44,10 @@ def test_remove_nonexistent_client_raises_error(bank, client_1):
 def test_get_client_by_id(bank, client_1, client_2):
     bank.add_client(client_1)
     bank.add_client(client_2)
-    assert bank.get_client_by_id(client_1.client_id) == client_1
-    assert bank.get_client_by_id(client_2.client_id) == client_2
+    assert bank.get_client_with_given_id(client_1.client_id) == client_1
+    assert bank.get_client_with_given_id(client_2.client_id) == client_2
 
 
-def test_get_client_by_invalid_id_returns_none(bank):
-    assert bank.get_client_by_id(uuid4()) is None
+def test_get_client_by_invalid_id_raiser_error(bank, client_1):
+    with pytest.raises(ValueError, match=f"Client with ID {client_1.client_id} doesn't exists."):
+        bank.get_client_with_given_id(client_1.client_id)
